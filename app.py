@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -14,4 +14,10 @@ def your_url():
         #request.form for post and request.args for get
         return render_template('your_url.html',code = request.form['code'])
     else:
-        return 'this is not valid'
+        #if there is someone is trying to do a get request, send them bk to home
+        #url_for makes page based on function name
+        return redirect(url_for('home'))
+
+@app.route('/about')
+def about():
+    return render_template('about.html')

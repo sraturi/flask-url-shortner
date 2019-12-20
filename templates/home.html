@@ -26,3 +26,15 @@
         <input type="submit" value="submit">
     
     </form>
+
+    <!-- this is the list of the sessions keys that we have saved so far -->
+    {% if codes %}
+    <h2> Codes you have created</h2>
+    <ul>
+        {% for code in codes%}
+        <a href="{{url_for('redirect_to_url', code=code)}}">
+            <li>{{code}}</li>
+        </a>
+        {%endfor%}
+    </ul>
+    {% endif %}

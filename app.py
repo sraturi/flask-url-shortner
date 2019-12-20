@@ -33,7 +33,7 @@ def your_url():
         else:
             f = request.files['file']
             full_name = request.form['code']+ secure_filename(f.filename)
-            f.save('/home/sachin/Desktop/PROJECTS/flask training/url-shortner/files/'+full_name)
+            f.save('/home/sachin/Desktop/PROJECTS/flask training/url-shortner/static/files/'+full_name)
             urls[request.form['code']] = {'file':full_name}
         
         with open('urls.json','w') as url_file:
@@ -47,3 +47,14 @@ def your_url():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/<string:code>')
+def redirect_to_url(code):
+    if os.path.exists('urls.json'):
+        with open('urls.json') as url_file:
+            urls = json.load(url_file)
+            if code in urls.keys():
+                if 'url' in urls[code].keys():
+                  return  redirect(urls[code]['url'])
+                else:
+                   return redirect( url_for('static',filename= 'files/'+urls[code]['file']))

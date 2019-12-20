@@ -1,4 +1,9 @@
 <h1>Welcome to the Url Shortner</h1>
+
+{%  for message in get_flashed_messages() %}
+<h2> {{message}}</h2>
+{% endfor %}
+
 <!-- action is how it goes to the your-url html page -->
 <form action="your-url" method="POST">
     <label for="url"> Website Url</label>

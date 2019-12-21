@@ -1,6 +1,6 @@
-### flask training
+### A really Basic flask application to help me learn flask!
 
-- install pip3 and flask
+#### first install pip3 and python3
 
 ### Ubuntu
    - pip3 install pipenv
